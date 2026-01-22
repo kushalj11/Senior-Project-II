@@ -1,0 +1,92 @@
+**CMSI 4072: Senior Project II**
+**Project Proposal Document**
+
+BookShelf - Reading Tracker & Book Community Platform
+
+==========================================================================
+
+PROJECT DESCRIPTION
+
+High-Level Overview
+
+BookShelf is a reading management platform where users discover books, track their reading progress, write reviews, and connect with other readers. The platform features a community-built book database where any user can add books that don't exist yet. Details include author, publisher, genre, reviews, links to where users can purchase it etc.
+
+Users can mark books as "Want to Read," "Currently Reading," or "Finished," write reviews, rate books, and receive personalized recommendations based on their reading history.
+
+Comparison to Existing Software
+
+Goodreads is the dominant platform in this space but is owned by Amazon and focuses heavily on commercial integration. BookShelf offers an independent alternative with a cleaner interface to make it understandable for any user group Unlike Goodreads, users can directly add missing books to the database, making the platform more comprehensive and user-driven.
+
+StoryGraph provides good statistics but lacks robust social features and community book lists. BookShelf combines strong analytics with social discovery features.
+
+Most Important Features
+
+• Community book database where users can add books with complete details
+• Reading tracker with progress monitoring and custom shelves
+• Review and rating system with spoiler warnings
+• Personalized book recommendations based on reading history
+• Social features including following users and activity feeds
+• Discussion forums
+• Reading statistics dashboard with graphs and analytics
+• Book lists and collections users can share
+• Where to buy links for each book
+• Reading goals and progress tracking
+
+Target End Users
+
+BookShelf is designed for avid readers of all ages who want to organize their reading life. This includes students managing academic reading, casual readers discovering new books, and anyone who wants to track books and connect with other readers.
+
+Hardware and Software Requirements
+
+Development requires a standard laptop with any modern operating system. The application will be built as a web application accessible through any browse.
+
+The technology stack includes React for the frontend, Node.js with Express for the backend API, MongoDB for the database, and Cloudinary for storing book cover images. Development tools include VS Code, Git for version control, and Postman for API testing.
+
+Maintenance
+
+The platform will be maintained as an open-source project after graduation. 
+
+============================================================================
+
+PROJECT JUSTIFICATION
+
+
+Database Systems concepts are needed for designing the relational schema between users, books, reviews, and social connections. Data Structures and Algorithms are applied through search features, recommendation algorithms, and statistical calculations for reading analytics.
+
+Web Development coursework provides the foundation for building the full-stack application with React and Node.js. Software Engineering principles guide the modular architecture, version control practices, and deployment workflows. Security and end user authentication, authorization, and protecting user data.
+
+Complex aspects include designing an efficient database schema for interconnected data, optimizing search performance as the database grows, implementing the recommendation algorithm, and building real-time social features.
+
+============================================================================
+
+Required Tools 
+
+JavaScript proficiency for both frontend and backend work. React experience for building the user interface. Node.js and Express for any API development.
+
+All required tools are free and available: VS Code, MongoDB Atlas, Cloudinary, Vercel, and Render.
+
+============================================================================
+
+Personal Interest
+
+This project excites me because I'm an avid reader but I have poor management skiils, building a tool I'll use daily provides an incentive to keep reading
+
+The scalability is open ended as this class project can be turned into something with real users and ongoing development.
+
+The technical challenges from database optimization to recommendation can improve skills and prepare me for professional software development roles.
+
+============================================================================
+
+Timeline 
+
+Weeks 1-3: Database design, API planning, UI wireframes, and development environment setup.
+
+Weeks 4-7: Backend development including authentication, book management, and reading tracker functionality.
+
+Weeks 8-11: Frontend development with React components, book search interface, and user profiles.
+
+Weeks 12-14: Social features, recommendation system, statistics dashboard, and book lists.
+
+Weeks 15-16: Testing, bug fixes, deployment, and presentation preparation.
+
+This timeline includes buffer time for unexpected challenges while ensuring steady progress with demonstrable milestones.
