@@ -1,3 +1,3 @@
 # Senior-Project-II
 
-Bookself App
+Bookshelf App
