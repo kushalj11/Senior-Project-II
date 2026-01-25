@@ -1,0 +1,40 @@
+
+CMSI 4072 Spring 2026
+Project Proposal Feedback
+Project: BookShelf
+=========================
+Proposal Document [2 points]:
+   Verbal Description:
+      Your overview clearly explains what BookShelf is, what users can do
+      (track books, discover, socialize, review), and the concept of a
+      community-built database.  This meets the requirement well.  You
+      compare BookShelf to two other applications, explaining what each
+      platform lacks and what your project provides instead.  This also
+      satisfies the requirement.  You also list a rich feature set and
+      your hardware & software requirements and end user descriptions are
+      complete.
+
+   Justification:
+      Here you mention what topics from you've learned are involved, and how
+      they are extended as well.  Your proposed challenges, search
+      optimization, recommendation system, analytics generation, amd social
+      features, are significant but not impossible within one semester.
+      This is especially true since you provide a good timeline.
+
+
+Proposal Presentation [Slides and video] [3 points]:
+   Slides:
+      The slides are really nice!  The backgrounds are very eye-catching,
+      and the white-on-black scheme is striking.  As a suggestion, you may
+      want to make the text a bit larger ~ you have about the right amount
+      of text for each of the things you describe, but it's kind of small.
+      There is a lot of extra space on several of the slides that you could
+      make use of.
+
+   Video:
+
+
+Summary:
+--------
+
+Nice job overall!  Keep up the good work.  Will update after video is posted.
