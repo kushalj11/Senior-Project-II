@@ -1,0 +1,64 @@
+Software Requirements Specification
+5.1 Requirements Introduction
+BookShelf is a web-based reading management platform that enables users to discover books, track reading progress, write reviews, and connect with other readers. 
+The system includes a community-built book database where users can add missing books, personal reading trackers with custom shelves, and social features including user following and activity feeds.
+
+
+5.2 Functional Requirements
+5.2.1 User Authentication
+5.2.1.1 The system shall provide user registration that accepts username, email address, and password.
+The registration function will validate email format and require passwords of at least 8 characters.
+5.2.1.2 The system shall authenticate users with email and password credentials.
+5.2.1.3 The system shall require authentication for user-specific operations including managing shelves, writing reviews, and following other users.
+
+5.2.2 Book Database Management
+5.2.2.1 The system shall allow authenticated users to add new books to the database.
+The book entry form will require title and author, and optionally accept ISBN, publisher, publication year, genre, description, and cover image.
+5.2.2.2 The system shall provide search functionality by title, author, or ISBN.
+5.2.2.3 The system shall display book details including title, author, cover image, description, and average rating.
+
+5.2.3 Reading Tracker and Shelves
+5.2.3.1 The system shall provide three default shelves for each user: "Want to Read," "Currently Reading," and "Finished."
+5.2.3.2 The system shall allow users to add, move, and remove books from shelves.
+5.2.3.3 The system shall allow users to create custom shelves with user-defined names.
+5.2.3.4 The system shall provide a progress tracker for books on the "Currently Reading" shelf.
+The progress tracker will accept page numbers or percentage completion.
+
+5.2.4 Review and Rating System
+5.2.4.1 The system shall allow authenticated users to rate books on a scale of 1 to 5 stars.
+5.2.4.2 The system shall allow authenticated users to write text reviews.
+5.2.4.3 The system shall calculate and display the average rating for each book.
+
+5.2.5 Social Features
+5.2.5.1 The system shall allow authenticated users to follow and unfollow other users.
+5.2.5.2 The system shall provide an activity feed showing recent actions by followed users.
+The activity feed will include adding books to shelves and writing reviews.
+5.2.5.3 The system shall allow users to view other users' public profiles including shelves and reviews.
+
+5.2.6 Reading Statistics
+5.2.6.1 The system shall calculate and display total books read and the rating from each user.
+
+5.3 Performance Requirements
+5.3.1 Response Times
+5.3.1.1 The system shall return book search results within 2 seconds.
+5.3.1.2 The system shall load pages within 3 seconds and process API requests within 1 second.
+5.3.2 Scalability
+5.3.2.1 The system shall support at least 100 concurrent users without performance degradation.
+
+5.4 Environment Requirements
+5.4.1 Development Environment Requirements
+Following are the hardware requirements for development:
+Processor- Intel Core i5 or equivalent
+RAM- 8GB minimumHard 
+Drive Space- 10 GB free space
+Following are the software requirements for development:
+Operating System- Windows 10/11, macOS 10.15+
+Git-Version 2.x or later
+Web Browser-Chrome, Firefox, or Safari latest version
+
+5.4.2 Execution Environment Requirements
+The application will be deployed using cloud hosting platforms. The frontend will be deployed on Vercel, the backend API on Render, MongoDB Atlas for the database, and Cloudinary for image hosting.
+Following are the client-side requirements for end users:
+Browser- Google Chrome or equivalent
+Network- Broadband with at least 5 Mbps
+Display- 1280x720 minimum resolution
