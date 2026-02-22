@@ -1,0 +1,48 @@
+
+Documentation Feedback ~ Deliverable #2
+Software Requirements Specification
+Initial Development Schedule
+CMSI 4072 Spring 2026
+=======================================
+
+COMPONENT BREAKDOWN:
+   Strengths
+
+   Suggestions
+
+
+FUNCTIONAL REQUIREMENTS:
+   Strengths
+
+   Suggestions
+
+
+PERFORMANCE REQUIREMENTS:
+   Strengths
+
+   Suggestions
+
+
+ENVIRONMENT REQUIREMENTS:
+   Strengths
+
+   Suggestions
+
+
+OVERALL ASSESSMENT:
+   Category                          Points
+   Component Breakdown               0.0/1
+   Functional Requirements           0.0/4
+   Performance Requirements          0.0/2
+   Environment Requirements          0.0/1
+                                     =====
+   Subtotal                          0.0/8
+   Preliminary Schedule              2.0/2
+   ------------------------------------------------------
+   Total Percentage:   2/10 = 20% which is not the best
+
+No SRS document submitted by the deliverable submission date.
+No credit for this deliverable.
+
+
+
