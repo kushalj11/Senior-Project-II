@@ -1,0 +1,81 @@
+
+Documentation Feedback ~ Deliverable #3
+Software Design Document ~ Architecture
+CMSI 4072 Spring 2026 ~
+=======================================
+
+6.1 INTRODUCTION SECTION:
+   System objectives section
+      Strengths:
+         Objectives map to core user goals (search, organize, review).
+         Social goals and “make reading trackable” are articulated.
+      Suggestions:
+         Separate functional vs non-functional objectives explicitly.
+         Add measurable NFR targets (latency, availability, a11y).
+         Note security goals beyond hashing (PII, token lifetime).
+
+   Hardware, software, and human interfaces section
+      Strengths:
+         Browser, network, and resolution requirements are listed.
+         Tech stack is clear: React, Express, MongoDB, Cloudinary, JWT.
+         Human interface summary and routing approach are given.
+      Suggestions:
+         Add supported browser versions table and device classes.
+         Document a11y standards (WCAG level, keyboard focus rules).
+         Clarify image limits, upload sizes, and CDN behavior.
+         Note privacy for analytics, logs, and local storage use.
+
+
+6.2 ARCHITECTURAL DESIGN SECTION:
+   Major softwre components section
+      Strengths:
+         Identifies key backend components and their duties.
+         Frontend, backend, storage, and media services are listed.
+      Suggestions:
+         Define interfaces per component (inputs, outputs, errors).
+         Add dependencies and data contracts between services.
+         Describe failure modes and fallbacks (e.g., Cloudinary down).
+         Clarify background jobs (e.g., feed gen, rating recalc) if any.
+
+   Major software interactions section
+      Strengths:
+         Explains request flow: React ? Express ? MongoDB/Cloudinary.
+         Notes auth checks with JWT on protected routes.
+      Suggestions:
+         Add sequence diagrams for key flows (login, review, upload).
+         Specify retry, timeout, and idempotency behaviors.
+         Document caching strategy (HTTP cache, ETag, CDN headers).
+         Include rate limits and abuse prevention for public routes.
+
+   Architectural design diagrams section
+      Strengths:
+         Includes architecture images to visualize structure.
+      Suggestions:
+         Ensure standard UML notation and readable labeling.
+         Add a system context diagram with actors and externals.
+         Provide component and deployment diagrams with trust zones.
+         Caption each diagram with scope and key assumptions.
+
+
+OVERALL ASSESSMENT:
+   INTRODUCTION                        1.0
+   System objectives                   1.0
+   H/W, S/W, Human I/F                 1.0
+
+   ARCHITECTURAL DESIGN SECTION:
+   Major softwre components            1.0
+   Major software interactions         1.0
+   Architectural design diagrams       5.0
+                                     ======
+   Subtotal                           10.0
+   ------------------------------------------------------
+   Total Percentage:  10/10 = 100% which is an A-plus
+
+Great work on this document, Kushal!  Your SDD has all the required elements
+and your diagrams look great and convey the information for an architectural
+level design of your application.  You might consider adding some system
+context and rationale, creating interface tables for each component, and
+including sequence diagrams for authorization, review, and image upload.
+
+Other than that, REALLY nice job!  Keep up the good work.
+
