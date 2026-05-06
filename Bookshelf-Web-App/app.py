@@ -14,7 +14,7 @@ from sqlalchemy import or_, func
 # Initialize Flask app
 app = Flask(__name__)
 # Auto-generate secret key if not provided via environment variable
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', os.urandom(24).hex())
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'bookshelf-secret-key-2026')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bookshelf.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = 'static/uploads/covers'
