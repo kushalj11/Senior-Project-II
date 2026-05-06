@@ -22,14 +22,10 @@ A web-based reading management platform where users can discover books, track re
 
 ### Installation Steps
 
-1. **Download or Clone the Project**
+1. **Clone the Project**
    ```bash
-   # If downloading from GitHub
-   git clone <repository-url>
-   cd Bookshelf
-
-   # OR if you received a ZIP file
-   # Extract the ZIP file and open terminal/command prompt in the Bookshelf folder
+   git clone https://github.com/kushalj11/Senior-Project-II.git
+   cd Senior-Project-II
    ```
 
 2. **Create a Virtual Environment** (Recommended)
@@ -181,57 +177,7 @@ Bookshelf/
 
 ## Configuration
 
-### Change Secret Key
-For production use, change the secret key in `app.py`:
-```python
-app.config['SECRET_KEY'] = 'your-secret-key-change-this-in-production'
-```
-
-### Change Port
-To run on a different port, modify the last line in `app.py`:
-```python
-app.run(debug=True, host='0.0.0.0', port=5000)  # Change 5000 to your port
-```
-
-### Database Location
-The SQLite database is created in the project root as `bookshelf.db`. To change this, modify in `app.py`:
-```python
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bookshelf.db'
-```
-
-## Troubleshooting
-
-### Database Issues
-If you encounter database errors, delete `bookshelf.db` and restart the application. It will create a fresh database.
-
-### Port Already in Use
-If port 5000 is already in use, either:
-- Stop the application using that port
-- Change the port in `app.py` (see Configuration section)
-
-### Import Errors
-Make sure all requirements are installed:
-```bash
-pip install -r requirements.txt
-```
-
-### Book Covers Not Displaying
-Ensure the `static/uploads/covers/` directory exists and has write permissions.
-
-## Notes for Developers
-
-- **Code Style**: Following PEP 8 guidelines for Python code
-- **Comments**: Comprehensive comments throughout the codebase
-- **Modularity**: Clear separation between models, routes, and templates
-- **Readability**: Descriptive variable and function names
-- **Error Handling**: Proper flash messages for user feedback
-
-### Adding New Features
-
-1. **Add a new route**: Edit `app.py` and add a function with `@app.route()` decorator
-2. **Add a new page**: Create a new HTML file in `templates/` folder
-3. **Add styling**: Add CSS rules to `static/css/style.css`
-4. **Add interactivity**: Add JavaScript to `static/js/main.js`
+The application uses secure defaults. The secret key is auto-generated, and the database is automatically created on first run.
 
 ## License
 
