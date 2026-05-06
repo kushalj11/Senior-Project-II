@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}{{ profile_user.username }}'s Profile - BookShelf{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+    <div class="container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-info">
+                <h1>{{ profile_user.username }}</h1>
+                <p class="member-since">Member since {{ profile_user.created_at.strftime('%B %Y') }}</p>
+                
+                <div class="profile-stats">
+                    <div class="stat">
+                        <strong>{{ total_books_read }}</strong>
+                        <span>Books Read</span>
+                    </div>
+                    <div class="stat">
+                        <strong>{{ profile_user.reviews|length }}</strong>
+                        <span>Reviews</span>
+                    </div>
+                    <div class="stat">
+                        <strong>{{ follower_count }}</strong>
+                        <span>Followers</span>
+                    </div>
+                    <div class="stat">
+                        <strong>{{ following_count }}</strong>
+                        <span>Following</span>
+                    </div>
+                </div>
+            </div>
+            
+            {% if user and user.id != profile_user.id %}
+            <div class="profile-actions">
+                {% if user.is_following(profile_user) %}
+                <form method="POST" action="{{ url_for('unfollow_user', user_id=profile_user.id) }}">
+                    <button type="submit" class="btn btn-secondary">Unfollow</button>
+                </form>
+                {% else %}
+                <form method="POST" action="{{ url_for('follow_user', user_id=profile_user.id) }}">
+                    <button type="submit" class="btn btn-primary">Follow</button>
+                </form>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Shelves Overview -->
+        <div class="profile-shelves">
+            <h2>Reading Shelves</h2>
+            <div class="shelf-grid">
+                {% for shelf in shelves %}
+                <div class="shelf-summary">
+                    <h3>
+                        <a href="{{ url_for('shelf_detail', shelf_id=shelf.id) }}">{{ shelf.name }}</a>
+                    </h3>
+                    <p>{{ shelf.entries|length }} books</p>
+                    
+                    {% if shelf.entries %}
+                    <div class="shelf-books-preview">
+                        {% for entry in shelf.entries[:3] %}
+                        <div class="book-thumb">
+                            {% if entry.book.cover_image %}
+                                {% if entry.book.cover_image.startswith('http://') or entry.book.cover_image.startswith('https://') %}
+                            <img src="{{ entry.book.cover_image }}" 
+                                 alt="{{ entry.book.title }}">
+                                {% else %}
+                            <img src="{{ url_for('static', filename='uploads/covers/' + entry.book.cover_image) }}" 
+                                 alt="{{ entry.book.title }}">
+                                {% endif %}
+                            {% else %}
+                            <div class="book-thumb-placeholder">📖</div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Recent Reviews -->
+        {% if reviews %}
+        <div class="profile-reviews">
+            <h2>Recent Reviews</h2>
+            <div class="reviews-list">
+                {% for review in reviews %}
+                <div class="review-item">
+                    <div class="review-book-info">
+                        <h4>
+                            <a href="{{ url_for('book_detail', book_id=review.book.id) }}">
+                                {{ review.book.title }}
+                            </a>
+                        </h4>
+                        <p>by {{ review.book.author }}</p>
+                    </div>
+                    <div class="review-rating">
+                        {% for i in range(review.rating) %}⭐{% endfor %}
+                    </div>
+                    {% if review.text %}
+                    <div class="review-text">{{ review.text }}</div>
+                    {% endif %}
+                    <div class="review-date">{{ review.created_at.strftime('%B %d, %Y') }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

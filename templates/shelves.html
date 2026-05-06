@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}My Shelves - BookShelf{% endblock %}
+
+{% block content %}
+<div class="shelves-page">
+    <div class="container">
+        <h1>My Shelves</h1>
+
+        <!-- Create New Shelf -->
+        <div class="create-shelf-section">
+            <h2>Create New Shelf</h2>
+            <form method="POST" action="{{ url_for('create_shelf') }}" class="inline-form">
+                <input type="text" name="shelf_name" placeholder="Enter shelf name..." 
+                       required maxlength="100">
+                <button type="submit" class="btn btn-primary">Create Shelf</button>
+            </form>
+        </div>
+
+        <!-- Shelves List -->
+        <div class="shelves-list">
+            {% for shelf in shelves %}
+            <div class="shelf-card">
+                <div class="shelf-header">
+                    <h3>
+                        {{ shelf.name }}
+                        {% if shelf.is_default %}
+                        <span class="badge badge-default">Default</span>
+                        {% endif %}
+                    </h3>
+                    <span class="shelf-count">{{ shelf.entries|length }} books</span>
+                </div>
+                
+                {% if shelf.entries %}
+                <div class="shelf-preview">
+                    {% for entry in shelf.entries[:5] %}
+                    <div class="book-mini">
+                        {% if entry.book.cover_image %}
+                            {% if entry.book.cover_image.startswith('http://') or entry.book.cover_image.startswith('https://') %}
+                        <img src="{{ entry.book.cover_image }}" 
+                             alt="{{ entry.book.title }}">
+                            {% else %}
+                        <img src="{{ url_for('static', filename='uploads/covers/' + entry.book.cover_image) }}" 
+                             alt="{{ entry.book.title }}">
+                            {% endif %}
+                        {% else %}
+                        <div class="book-mini-placeholder">📖</div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    {% if shelf.entries|length > 5 %}
+                    <span class="more-books">+{{ shelf.entries|length - 5 }} more</span>
+                    {% endif %}
+                </div>
+                {% else %}
+                <p class="empty-shelf">No books on this shelf yet</p>
+                {% endif %}
+                
+                <a href="{{ url_for('shelf_detail', shelf_id=shelf.id) }}" 
+                   class="btn btn-secondary">View Shelf</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}All Activity - BookShelf{% endblock %}
+
+{% block content %}
+<div class="activity-feed-page">
+    <div class="container">
+        <h1>All Activity</h1>
+        <p class="page-subtitle">Recent activity from all BookShelf users</p>
+
+        {% if activities %}
+        <div class="activity-timeline">
+            {% for activity in activities %}
+            <div class="activity-entry activity-{{ activity.type }}">
+                <div class="activity-icon">
+                    {% if activity.type == 'review' %}⭐{% elif activity.type == 'new_user' %}👤{% elif activity.type == 'new_book' %}📕{% else %}📚{% endif %}
+                </div>
+                
+                <div class="activity-content">
+                    {% if activity.type == 'new_user' %}
+                    <div class="activity-header">
+                        <a href="{{ url_for('user_profile', user_id=activity.user.id) }}" class="activity-user">
+                            <strong>{{ activity.user.username }}</strong>
+                        </a>
+                        <span>joined BookShelf</span>
+                    </div>
+                    
+                    {% elif activity.type == 'new_book' %}
+                    <div class="activity-header">
+                        <a href="{{ url_for('user_profile', user_id=activity.user.id) }}" class="activity-user">
+                            <strong>{{ activity.user.username }}</strong>
+                        </a>
+                        <span>added</span>
+                        <a href="{{ url_for('book_detail', book_id=activity.book.id) }}" class="activity-book">
+                            {{ activity.book.title }}
+                        </a>
+                        <span>to the database</span>
+                    </div>
+                    
+                    {% elif activity.type == 'review' %}
+                    <div class="activity-header">
+                        <a href="{{ url_for('user_profile', user_id=activity.user.id) }}" class="activity-user">
+                            <strong>{{ activity.user.username }}</strong>
+                        </a>
+                        <span>reviewed</span>
+                        <a href="{{ url_for('book_detail', book_id=activity.book.id) }}" class="activity-book">
+                            {{ activity.book.title }}
+                        </a>
+                    </div>
+                    <div class="activity-rating">
+                        {% for i in range(activity.rating) %}⭐{% endfor %}
+                    </div>
+                    {% if activity.text %}
+                    <div class="activity-review-text">
+                        {{ activity.text[:200] }}{% if activity.text|length > 200 %}...{% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    {% else %}
+                    <div class="activity-header">
+                        <a href="{{ url_for('user_profile', user_id=activity.user.id) }}" class="activity-user">
+                            <strong>{{ activity.user.username }}</strong>
+                        </a>
+                        <span>added to {{ activity.shelf.name }}</span>
+                        <a href="{{ url_for('book_detail', book_id=activity.book.id) }}" class="activity-book">
+                            {{ activity.book.title }}
+                        </a>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="activity-time">
+                        {{ activity.timestamp.strftime('%B %d, %Y at %I:%M %p') }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-activity">
+            <p>No recent activity on BookShelf yet.</p>
+            <p>Be the first to <a href="{{ url_for('add_book') }}">add a book</a> or <a href="{{ url_for('search') }}">write a review</a>!</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BookShelf{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash flash-{{ category }}">
+                        {{ message }}
+                        <button class="flash-close" onclick="this.parentElement.remove()">×</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Sidebar (only show when logged in) -->
+    {% if user %}
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>📚 BookShelf</h2>
+            <p>Hello, {{ user.username }}!</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('dashboard') }}" class="nav-link">
+                <span class="nav-icon">🏠</span> Dashboard
+            </a>
+            <a href="{{ url_for('search') }}" class="nav-link">
+                <span class="nav-icon">🔍</span> Search Books
+            </a>
+            <a href="{{ url_for('add_book') }}" class="nav-link">
+                <span class="nav-icon">➕</span> Add Book
+            </a>
+            <a href="{{ url_for('shelves') }}" class="nav-link">
+                <span class="nav-icon">📖</span> My Shelves
+            </a>
+            <a href="{{ url_for('activity_feed') }}" class="nav-link">
+                <span class="nav-icon">�</span> Follow Activity
+            </a>
+            <a href="{{ url_for('all_activity') }}" class="nav-link">
+                <span class="nav-icon">📰</span> All Activity
+            </a>
+            <a href="{{ url_for('users_list') }}" class="nav-link">
+                <span class="nav-icon">👥</span> Find Users
+            </a>
+            <a href="{{ url_for('user_profile', user_id=user.id) }}" class="nav-link">
+                <span class="nav-icon">👤</span> My Profile
+            </a>
+            <a href="{{ url_for('logout') }}" class="nav-link logout">
+                <span class="nav-icon">🚪</span> Logout
+            </a>
+        </nav>
+    </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <div class="main-content {% if not user %}no-sidebar{% endif %}">
+        <!-- Top Navigation (for non-logged in users) -->
+        {% if not user %}
+        <header class="top-nav">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1>📚 BookShelf</h1>
+                </div>
+                <nav class="nav-links">
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('search') }}">Browse Books</a>
+                    <a href="{{ url_for('login') }}" class="btn btn-primary">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-success">Sign Up</a>
+                </nav>
+            </div>
+        </header>
+        {% endif %}
+
+        <!-- Page Content -->
+        <div class="content-wrapper">
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2026 BookShelf - Reading Management Platform</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

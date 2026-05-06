@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Search Books - BookShelf{% endblock %}
+
+{% block content %}
+<div class="search-page">
+    <div class="container">
+        <h1>Search Books</h1>
+
+        <!-- Search Form -->
+        <form method="GET" action="{{ url_for('search') }}" class="search-form">
+            <div class="search-input-group">
+                <input type="text" name="q" id="search-query" 
+                       value="{{ query if query else '' }}" 
+                       placeholder="Search by title, author, or ISBN..."
+                       autocomplete="off">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+        {% if user %}
+        <div class="search-actions">
+            <p>Can't find what you're looking for?</p>
+            <a href="{{ url_for('add_book') }}" class="btn btn-success">Add a New Book</a>
+        </div>
+        {% endif %}
+
+        <!-- Search Results / All Books -->
+        <div class="search-results">
+            {% if query %}
+            <h2>Search Results for "{{ query }}"</h2>
+            {% else %}
+            <h2>All Books</h2>
+            {% endif %}
+            
+            {% if results %}
+            <p class="results-count">{{ results|length }} book(s)</p>
+            <div class="book-grid">
+                {% for book in results %}
+                <div class="book-card">
+                    {% if book.cover_image %}
+                        {% if book.cover_image.startswith('http://') or book.cover_image.startswith('https://') %}
+                    <img src="{{ book.cover_image }}" 
+                         alt="{{ book.title }} cover" class="book-cover">
+                        {% else %}
+                    <img src="{{ url_for('static', filename='uploads/covers/' + book.cover_image) }}" 
+                         alt="{{ book.title }} cover" class="book-cover">
+                        {% endif %}
+                    {% else %}
+                    <div class="book-cover-placeholder">📖</div>
+                    {% endif %}
+                    
+                    <h3>{{ book.title }}</h3>
+                    <p class="book-author">by {{ book.author }}</p>
+                    
+                    {% if book.genre %}
+                    <p class="book-genre">{{ book.genre }}</p>
+                    {% endif %}
+                    
+                    {% if book.average_rating > 0 %}
+                    <div class="rating">
+                        ⭐ {{ "%.1f"|format(book.average_rating) }} 
+                        <span class="review-count">({{ book.review_count }} reviews)</span>
+                    </div>
+                    {% endif %}
+                    
+                    <a href="{{ url_for('book_detail', book_id=book.id) }}" 
+                       class="btn btn-small btn-primary">View Details</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="no-results">
+                {% if query %}
+                <p>No books found matching "{{ query }}"</p>
+                {% if user %}
+                <p>Would you like to <a href="{{ url_for('add_book') }}">add this book</a> to our database?</p>
+                {% endif %}
+                {% else %}
+                <p>No books in the database yet.</p>
+                {% if user %}
+                <p><a href="{{ url_for('add_book') }}">Add the first book</a> to get started!</p>
+                {% endif %}
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

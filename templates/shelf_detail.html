@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}{{ shelf.name }} - BookShelf{% endblock %}
+
+{% block content %}
+<div class="shelf-detail-page">
+    <div class="container">
+        <div class="shelf-header-section">
+            <h1>{{ shelf.name }}</h1>
+            {% if not is_owner %}
+            <p class="shelf-owner">by <a href="{{ url_for('user_profile', user_id=shelf.owner.id) }}">{{ shelf.owner.username }}</a></p>
+            {% endif %}
+            {% if shelf.is_default %}
+            <span class="badge badge-default">Default Shelf</span>
+            {% endif %}
+            <p class="shelf-count">{{ shelf.entries|length }} books</p>
+        </div>
+
+        <div class="shelf-actions">
+            {% if is_owner %}
+            <a href="{{ url_for('shelves') }}" class="btn btn-secondary">← Back to All Shelves</a>
+            {% else %}
+            <a href="{{ url_for('user_profile', user_id=shelf.owner.id) }}" class="btn btn-secondary">← Back to Profile</a>
+            {% endif %}
+        </div>
+
+        {% if shelf.entries %}
+        <div class="shelf-books">
+            {% for entry in shelf.entries %}
+            <div class="shelf-book-item">
+                <div class="book-cover-mini">
+                    {% if entry.book.cover_image %}
+                        {% if entry.book.cover_image.startswith('http://') or entry.book.cover_image.startswith('https://') %}
+                    <img src="{{ entry.book.cover_image }}" 
+                         alt="{{ entry.book.title }}">
+                        {% else %}
+                    <img src="{{ url_for('static', filename='uploads/covers/' + entry.book.cover_image) }}" 
+                         alt="{{ entry.book.title }}">
+                        {% endif %}
+                    {% else %}
+                    <div class="book-cover-placeholder-small">📖</div>
+                    {% endif %}
+                </div>
+                
+                <div class="book-details">
+                    <h3>
+                        <a href="{{ url_for('book_detail', book_id=entry.book.id) }}">
+                            {{ entry.book.title }}
+                        </a>
+                    </h3>
+                    <p class="book-author">by {{ entry.book.author }}</p>
+                    
+                    {% if entry.book.average_rating > 0 %}
+                    <div class="rating-small">
+                        ⭐ {{ "%.1f"|format(entry.book.average_rating) }}
+                    </div>
+                    {% endif %}
+                    
+                    <p class="added-date">Added: {{ entry.added_at.strftime('%B %d, %Y') }}</p>
+                    
+                    <!-- Progress tracking for Currently Reading shelf (owner only) -->
+                    {% if is_owner and shelf.name == 'Currently Reading' %}
+                    <div class="progress-section">
+                        {% if entry.progress_pages %}
+                        <p class="current-progress">Progress: Page {{ entry.progress_pages }}</p>
+                        {% elif entry.progress_percent %}
+                        <p class="current-progress">Progress: {{ entry.progress_percent }}%</p>
+                        {% endif %}
+                        
+                        <form method="POST" action="{{ url_for('update_progress', entry_id=entry.id) }}" 
+                              class="progress-form">
+                            <select name="progress_type" id="progress-type-{{ entry.id }}">
+                                <option value="pages">Pages</option>
+                                <option value="percent">Percentage</option>
+                            </select>
+                            <input type="number" name="progress_value" min="0" max="10000" 
+                                   placeholder="0" required>
+                            <button type="submit" class="btn btn-small">Update</button>
+                        </form>
+                    </div>
+                    {% elif not is_owner and shelf.name == 'Currently Reading' %}
+                    <div class="progress-section">
+                        {% if entry.progress_pages %}
+                        <p class="current-progress">Progress: Page {{ entry.progress_pages }}</p>
+                        {% elif entry.progress_percent %}
+                        <p class="current-progress">Progress: {{ entry.progress_percent }}%</p>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+                
+                {% if is_owner %}
+                <div class="book-actions">
+                    <form method="POST" action="{{ url_for('remove_from_shelf', entry_id=entry.id) }}">
+                        <button type="submit" class="btn btn-small btn-danger"
+                                onclick="return confirm('Remove this book from the shelf?')">
+                            Remove
+                        </button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-shelf-message">
+            <p>This shelf is empty. Start adding books!</p>
+            <a href="{{ url_for('search') }}" class="btn btn-primary">Search for Books</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

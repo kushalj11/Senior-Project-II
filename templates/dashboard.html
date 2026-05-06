@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - BookShelf{% endblock %}
+
+{% block content %}
+<div class="dashboard-page">
+    <div class="container">
+        <h1>My Dashboard</h1>
+
+        <!-- Stats Section -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🎉</div>
+                <div class="stat-value">{{ total_books_read }}</div>
+                <div class="stat-label">Books Finished</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div class="stat-value">{{ currently_reading_count }}</div>
+                <div class="stat-label">Currently Reading</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-value">{{ total_reviews }}</div>
+                <div class="stat-label">Reviews Written</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-value">{{ user.following.count() }}</div>
+                <div class="stat-label">Following</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value">{{ want_to_read_count }}</div>
+                <div class="stat-label">Want to Read</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏷️</div>
+                <div class="stat-value">{{ favorite_genre }}</div>
+                <div class="stat-label">Favorite Genre</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-value">{{ "%.1f"|format(avg_rating) if avg_rating > 0 else 'N/A' }}</div>
+                <div class="stat-label">Avg Rating Given</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📖</div>
+                <div class="stat-value">{{ shelves|length }}</div>
+                <div class="stat-label">Total Shelves</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h2>Quick Actions</h2>
+            <div class="action-buttons">
+                <a href="{{ url_for('search') }}" class="btn btn-primary">🔍 Search Books</a>
+                <a href="{{ url_for('add_book') }}" class="btn btn-success">➕ Add New Book</a>
+                <a href="{{ url_for('shelves') }}" class="btn btn-secondary">📚 View My Shelves</a>
+                <a href="{{ url_for('activity_feed') }}" class="btn btn-info">� Follow Activity</a>
+            </div>
+        </div>
+
+        <!-- My Shelves Overview -->
+        <div class="shelves-overview">
+            <h2>My Shelves</h2>
+            <div class="shelf-list">
+                {% for shelf in shelves %}
+                <div class="shelf-item">
+                    <div class="shelf-header">
+                        <h3>
+                            {{ shelf.name }}
+                            {% if shelf.is_default %}
+                            <span class="badge">Default</span>
+                            {% endif %}
+                        </h3>
+                        <span class="shelf-count">{{ shelf.entries|length }} books</span>
+                    </div>
+                    <a href="{{ url_for('shelf_detail', shelf_id=shelf.id) }}" class="btn btn-small">View Shelf</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Recent Activity from Followed Users -->
+        {% if recent_reviews %}
+        <div class="recent-activity">
+            <h2>Recent Activity from People You Follow</h2>
+            <div class="activity-list">
+                {% for review in recent_reviews %}
+                <div class="activity-item">
+                    <div class="activity-user">
+                        <strong>{{ review.author.username }}</strong> reviewed 
+                        <a href="{{ url_for('book_detail', book_id=review.book.id) }}">{{ review.book.title }}</a>
+                    </div>
+                    <div class="activity-rating">
+                        {% for i in range(review.rating) %}⭐{% endfor %}
+                    </div>
+                    {% if review.text %}
+                    <div class="activity-text">{{ review.text[:150] }}{% if review.text|length > 150 %}...{% endif %}</div>
+                    {% endif %}
+                    <div class="activity-time">{{ review.created_at.strftime('%B %d, %Y') }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <a href="{{ url_for('activity_feed') }}" class="btn btn-secondary">View All Activity</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

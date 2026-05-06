@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Find Users - BookShelf{% endblock %}
+
+{% block content %}
+<div class="users-page">
+    <div class="container">
+        <h1>Find Users to Follow</h1>
+        <p class="page-subtitle">Connect with other readers and see what they're reading</p>
+
+        <div class="users-list">
+            {% for other_user in all_users %}
+            <div class="user-card">
+                <div class="user-info">
+                    <h3>
+                        <a href="{{ url_for('user_profile', user_id=other_user.id) }}">
+                            {{ other_user.username }}
+                        </a>
+                    </h3>
+                    <div class="user-stats">
+                        <span>{{ other_user.followers.count() }} followers</span>
+                        <span>•</span>
+                        <span>{{ other_user.reviews|length }} reviews</span>
+                    </div>
+                </div>
+                
+                <div class="user-actions">
+                    {% if user.is_following(other_user) %}
+                    <form method="POST" action="{{ url_for('unfollow_user', user_id=other_user.id) }}">
+                        <button type="submit" class="btn btn-secondary btn-small">Unfollow</button>
+                    </form>
+                    {% else %}
+                    <form method="POST" action="{{ url_for('follow_user', user_id=other_user.id) }}">
+                        <button type="submit" class="btn btn-primary btn-small">Follow</button>
+                    </form>
+                    {% endif %}
+                    <a href="{{ url_for('user_profile', user_id=other_user.id) }}" 
+                       class="btn btn-secondary btn-small">View Profile</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
