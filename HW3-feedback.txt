@@ -1,0 +1,53 @@
+
+
+HW 3 - Stephens Book Chapters 7 and 8
+CMSI 4072 Spring 2026
+
+Category        Weight     Earned
+===========    ========    ======
+Problem 7.1    [5 pts.]      4.0
+Problem 7.2    [4 pts.]      4.0
+Problem 7.4    [5 pts.]      5.0
+Problem 7.5    [4 pts.]      0.0
+Problem 7.7    [5 pts.]      5.0
+Problem 8.1    [5 pts.]      5.0
+Problem 8.3    [5 pts.]      5.0
+Problem 8.5    [4 pts.]      4.0
+Problem 8.9    [4 pts.]      4.0
+Problem 8.11   [5 pts.]      5.0
+Problem 8.12   [4 pts.]      4.0
+
+       Subtotal [50 max]     50.0
+              Your Total     45.0
+         45.0 out of 50.0 =  90.0%
+
+         Letter grade   A-minus
+
+=================
+SPECIFIC COMMENTS:
+Problem 7.1
+   You can still remove extra comments by taking out the ones that simply
+   say what the code already says.
+Problem 7.2
+   Correct
+Problem 7.4
+   Consider, though, that you could throw an exception for those erroneous
+   inputs and pass the "error handling" back to the caller.
+Problem 7.5
+   NO ANSWER PROVIDED
+Problem 7.7
+   Correct
+Problem 8.1
+   Correct
+Problem 8.3
+   Correct
+Problem 8.5
+   Correct
+Problem 8.9
+   Correct
+Problem 8.11
+   Correct
+Problem 8.12
+   Correct
+
+NOt a bad job on this assignment!

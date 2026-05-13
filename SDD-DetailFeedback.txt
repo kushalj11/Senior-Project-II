@@ -1,0 +1,89 @@
+
+Documentation Feedback ~ Deliverable #4
+Software Design Document ~ Detailed Design
+CMSI 4072 Spring 2026
+==========================================
+
+DETAILED CLASS DESCRIPTIONS:
+   Strengths
+      This section is very strong and appropriately detailed for a
+         detailed-design–level SDD.
+   Suggestions
+      While coverage is excellent, a small improvement would be to
+         consistently document return values and HTTP status codes for
+         all controller methods, not just selected ones.
+
+DETAILED INTERFACE DESCRIPTIONS:
+   Strengths
+      The description demonstrates a clear separation of concerns,
+         with the frontend acting strictly as a client and the backend
+         serving as the sole gateway to application logic and data.
+   Suggestions
+      Interface descriptions are concise but slightly high level.
+      Adding a small table or structured listing of major endpoint
+         groups (auth, books, shelves, reviews, social) with their
+         request/response expectations would improve clarity.
+
+DETAILED DATA STRUCTURE DESCRIPTIONS:
+   Strengths
+      Core non-database data structures are clearly identified.
+      The descriptions make clear how derived data (activity feed
+         entries, public user views) is constructed from underlying
+         domain models, which supports correct implementation.
+   Suggestions
+      This section is relatively brief compared to the richness of
+         the underlying data model. Including canonical JSON examples
+         for a JWT payload or an activity feed item would improve
+         concreteness.
+
+DETAILED DESIGN DIAGRAMS:
+   Strengths
+      The sequence diagrams are particularly effective, as they walk
+         through complete request flows with validation steps, failure
+         paths, and database updates clearly spelled out.
+   Suggestions
+      While diagrams are present, most are referenced visually rather
+         than explained textually. One or two sentences describing the
+         intent and scope of each diagram would improve readability and
+         review effectiveness.
+
+DATABASE DESIGN AND DESCRIPTION:
+   Strengths
+      This section is complete and well executed.
+   Suggestions
+      The ER diagram is referenced but not described in text.
+
+
+----------------------------------------------
+OVERALL ASSESSMENT:
+   Category                          Points
+   Class Descriptions:                  3 of  3
+   Interface Descriptions:              3 of  3
+   Data structure Descriptions:         1 of  1
+   Design diagrams:                     3 of  3
+   Database design/descriptions:        2 of  2    [this is a gimme]
+                                     ===========
+   Subtotal                            10 of 10
+   ------------------------------------------------------
+   Total Percentage:  10/10 = 100% which is an A-plus
+
+
+OVERALL EVALUATION
+==================
+As a detailed-design–level SDD, this document is **highly
+complete and implementation-ready**. Sections 6.3.1 through
+6.4 demonstrate strong alignment with detailed design
+expectations, with clear class responsibilities, realistic
+interface definitions, thorough flow descriptions, and solid
+database design.
+
+Only minor refinements—primarily additional formalization and
+explanatory text—would be needed to make this an exemplary
+detailed design document suitable for both waterfall review and
+agile development execution.
+
+Very nice work on this document.  Your design is good, even if some of
+your requirements are not granular enough.  Shows that you are becoming
+a good software architect!
+
+Keep up the good work.

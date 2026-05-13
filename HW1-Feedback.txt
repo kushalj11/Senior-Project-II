@@ -1,0 +1,57 @@
+
+
+HW 1 - Stephens Book Chapters 1, 2, 4, and 5
+CMSI 4072 Spring 2026
+
+Category        Weight     Earned
+===========    ========    ======
+Problem 1.1    [8 pts.]       8.0
+Problem 1.2    [8 pts.]       8.0
+Problem 2.4    [1 pts.]       1.0
+Problem 2.5    [1 pts.]       1.0
+Problem 4.2    [5 pts.]       4.0
+Problem 4.4    [5 pts.]       5.0
+Problem 4.6    [1 pts.]       1.0
+Problem 4.8    [2 pts.]       0.0
+Problem 5.1    [1 pts.]       1.0
+Problem 5.3    [5 pts.]       3.0
+Problem 5.9    [3 pts.]       3.0
+
+      Subtotal [50 max]      40.0
+             Your Total      35.0
+
+         Letter grade   B-plus
+
+=================
+SPECIFIC COMMENTS:
+
+Problem 1.1 ~ correct
+
+Problem 1.2 ~ correct
+
+Problem 2.4 ~ correct
+
+Problem 2.5 ~ correct
+
+Problem 4.2 ~ the submission doesn’t show a full CPM working (network,
+   ES/EF/LS/LF, slack) to justify the numbers.
+
+Problem 4.4 ~ correct
+
+Problem 4.6 ~ correct
+
+Problem 4.8 ~ The two “biggest mistakes” listed are not tracking at all
+   and micromanaging.  The text typically emphasizes adding people to a late
+   task (Brooks’s Law) and ignoring lost time assuming you can make it up
+   later; the answer doesn’t align with these
+
+Problem 5.1 ~ correct
+
+Problem 5.3 ~ (e) “schedule at any time”, (h) sequential execution, and
+(i) wait until finish are functional behaviors (not nonfunctional), and many
+items should be labeled as user + functional rather than only “user.”
+
+Problem 5.9 ~ correct
+
+
+nice work!
